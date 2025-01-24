@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 public class Manager : MonoBehaviour
 {
 
-    public GameObject ticket;
+    public GameObject ticket, button;
 
 
 
@@ -32,6 +32,7 @@ public class Manager : MonoBehaviour
     public void Accept() 
     {
      ticket.SetActive(false);
+     button.SetActive(false);
     }
 
     public void Menu()
