@@ -6,7 +6,9 @@ using static Unity.Burst.Intrinsics.X86.Avx;
 
 public class idk : MonoBehaviour
 {
-    float filltime = 3f;
+
+    public GameObject liquid;
+    float filltime = 50f;
     float currenttime;
     Collider2D CupCollider;
     // Start is called before the first frame update
@@ -18,7 +20,7 @@ public class idk : MonoBehaviour
     private void OnTriggerStay2D(Collider2D collision)
     {
 
-            for (int i = 0; i < 20; i++)
+            for (int i = 0; i < 10; i++)
             {
                 if (currenttime <= filltime)
                 {
@@ -29,6 +31,7 @@ public class idk : MonoBehaviour
                 else
             {
                 collision.gameObject.GetComponent<Spponmoving>().filled = true;
+                liquid.SetActive(false);
             }
 
             
