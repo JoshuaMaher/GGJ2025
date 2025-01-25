@@ -7,35 +7,70 @@ using static Unity.Burst.Intrinsics.X86.Avx;
 public class Mixing : MonoBehaviour
 {
 
-    public GameObject liquid;
-    float filltime = 50f;
-    float currenttime;
-    Collider2D CupCollider;
-    // Start is called before the first frame update
+    public GameObject cup;
+    float mixCount = 7;
+
+    public bool mixed;
+    private bool soundPlayed;
+
+    Color ogColor;
+
+    [SerializeField] private AudioSource slosh;
+    [SerializeField] private AudioSource win;
+
+
+
     void Start()
     {
         Physics2D.queriesHitTriggers = true;
-        CupCollider = this.GetComponent<Collider2D>();
+        ogColor = cup.gameObject.GetComponent<SpriteRenderer>().color;
+       
     }
-    private void OnTriggerStay2D(Collider2D collision)
+
+    void Update() 
     {
-
-            for (int i = 0; i < 10; i++)
-            {
-                if (currenttime <= filltime)
-                {
-                    currenttime += Time.deltaTime;
-                    new WaitForSeconds(0.01f);
-                    Debug.Log(currenttime);
-                }
-                else
-            {
-                collision.gameObject.GetComponent<Spponmoving>().filled = true;
-                liquid.SetActive(false);
-            }
-
-            
-
+        if (mixCount <=0) 
+        {
+              cup.gameObject.GetComponent<SpriteRenderer>().color = Color.green;
+              cup.gameObject.GetComponent<BoxCollider2D>().enabled = false;
+              mixed = true;
         }
+
+        if(mixed && !soundPlayed) 
+        {
+            StartCoroutine(Finished());
+        }
+    }
+
+    IEnumerator Finished() 
+    {
+         soundPlayed = true;
+         win.Play();
+
+        yield return new WaitForSeconds(2);
+
+        win.Stop();
+
+    }
+
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.gameObject.CompareTag("Cup")) 
+        {
+            mixCount -= 1;
+            cup.gameObject.GetComponent<SpriteRenderer>().color = Color.white;
+            slosh.Play();
+        }            
+
+        
+    }
+
+    private void OnTriggerExit2D(Collider2D collision) 
+    {
+         if(collision.gameObject.CompareTag("Cup")) 
+        {
+            cup.gameObject.GetComponent<SpriteRenderer>().color = ogColor;
+        }      
     }
 }
