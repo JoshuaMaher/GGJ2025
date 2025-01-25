@@ -4,7 +4,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using static Unity.Burst.Intrinsics.X86.Avx;
 
-public class idk : MonoBehaviour
+public class Mixing : MonoBehaviour
 {
 
     public GameObject liquid;
