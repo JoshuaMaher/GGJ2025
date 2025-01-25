@@ -10,7 +10,7 @@ public class Manager : MonoBehaviour
 
     [SerializeField] private AudioSource buttonSound;
 
-    public GameObject ticket, cup, spoon, machine, bobaButton, redline, mixButton, bobaCup, smallCup;
+    public GameObject ticket, cup, spoon, machine, bobaButton, redline, mixButton, bobaCup, smallCup, liquid;
 
     public bool filled, orderaccepted;
 
@@ -46,6 +46,7 @@ public class Manager : MonoBehaviour
      buttonSound.Play();
      cup.SetActive(true);
      machine.SetActive(true);
+     liquid.SetActive(true);
 
      StartCoroutine(Flash());
      

@@ -7,8 +7,9 @@ using static Unity.Burst.Intrinsics.X86.Avx;
 public class Mixing : MonoBehaviour
 {
 
-    public GameObject cup, straw, ticket;
+    public GameObject Liquid, straw, ticket, endcup, cup;
     float mixCount = 7;
+
 
     public bool mixed;
     private bool soundPlayed;
@@ -23,7 +24,7 @@ public class Mixing : MonoBehaviour
     void Start()
     {
         Physics2D.queriesHitTriggers = true;
-        ogColor = cup.gameObject.GetComponent<SpriteRenderer>().color;
+        ogColor = Liquid.gameObject.GetComponent<SpriteRenderer>().color;
        
     }
 
@@ -31,8 +32,8 @@ public class Mixing : MonoBehaviour
     {
         if (mixCount <=0) 
         {
-              cup.gameObject.GetComponent<SpriteRenderer>().color = Color.magenta;
-              cup.gameObject.GetComponent<BoxCollider2D>().enabled = false;
+              Liquid.gameObject.GetComponent<SpriteRenderer>().color = Color.magenta;
+            Liquid.gameObject.GetComponent<BoxCollider2D>().enabled = false;
               
               mixed = true;
         }
@@ -55,6 +56,9 @@ public class Mixing : MonoBehaviour
         straw.SetActive(false);
 
         ticket.SetActive(true);
+        cup.SetActive(false);
+        endcup.SetActive(true);
+        Liquid.SetActive(true);
 
     }
 
@@ -64,7 +68,7 @@ public class Mixing : MonoBehaviour
         if(collision.gameObject.CompareTag("Cup")) 
         {
             mixCount -= 1;
-            cup.gameObject.GetComponent<SpriteRenderer>().color = Color.white;
+            Liquid.gameObject.GetComponent<SpriteRenderer>().color = Color.white;
             slosh.Play();
         }            
 
@@ -75,7 +79,7 @@ public class Mixing : MonoBehaviour
     {
          if(collision.gameObject.CompareTag("Cup")) 
         {
-            cup.gameObject.GetComponent<SpriteRenderer>().color = ogColor;
+            Liquid.gameObject.GetComponent<SpriteRenderer>().color = ogColor;
         }      
     }
 }
