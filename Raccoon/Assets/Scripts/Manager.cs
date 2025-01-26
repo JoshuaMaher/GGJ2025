@@ -130,6 +130,16 @@ public class Manager : MonoBehaviour
         SceneManager.LoadScene("MainMenu");
     }
 
+    public void China()
+    {
+        SceneManager.LoadScene("China");
+    }
+
+    public void Taiwan()
+    {
+        SceneManager.LoadScene("Taiwan");
+    }
+
     public void Quit()
     {
         Application.Quit();
