@@ -7,7 +7,7 @@ using static Unity.Burst.Intrinsics.X86.Avx;
 public class Mixing : MonoBehaviour
 {
 
-    public GameObject Liquid, straw, ticket, endcup, cup;
+    public GameObject Liquid, straw, ticket, endcup, cup, ice, boba, firework;
     float mixCount = 7;
 
 
@@ -32,7 +32,7 @@ public class Mixing : MonoBehaviour
     {
         if (mixCount <=0) 
         {
-              Liquid.gameObject.GetComponent<SpriteRenderer>().color = Color.magenta;
+            
             Liquid.gameObject.GetComponent<BoxCollider2D>().enabled = false;
               
               mixed = true;
@@ -48,8 +48,9 @@ public class Mixing : MonoBehaviour
     {
          soundPlayed = true;
          win.Play();
+         firework.SetActive(true);
 
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(1.7f);
 
         win.Stop();
 
@@ -59,6 +60,8 @@ public class Mixing : MonoBehaviour
         cup.SetActive(false);
         endcup.SetActive(true);
         Liquid.SetActive(true);
+        ice.SetActive(false);
+        boba.SetActive(false);
 
     }
 

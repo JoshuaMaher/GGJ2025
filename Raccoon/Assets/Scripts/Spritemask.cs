@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Spritemask : MonoBehaviour
 {
+         [SerializeField] private AudioSource buttonSound;
     public GameObject Button;
     float currenttime = 0f;
     public GameObject manager;
@@ -29,6 +30,7 @@ public class Spritemask : MonoBehaviour
         if (manager.GetComponent<Manager>().orderaccepted == true && hit && Input.GetKeyDown(KeyCode.Mouse0))
         {
                 milkSound.Play();
+                buttonSound.Play();
                 liquid.SetActive(true);
         }
                 if (Input.GetKeyUp(KeyCode.Mouse0))

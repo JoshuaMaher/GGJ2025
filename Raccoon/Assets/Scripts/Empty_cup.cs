@@ -7,7 +7,7 @@ public class Empty_cup : MonoBehaviour
 
     public GameObject Button;
     float currenttime;
-    float rotation_speed = 20f;
+    float rotation_speed = 60f;
 
     // Start is called before the first frame update
     void Start()
@@ -20,7 +20,7 @@ public class Empty_cup : MonoBehaviour
     {
         currenttime += Time.deltaTime;
 
-        if (currenttime >= 6f)
+        if (currenttime >= 7f)
             {
                 Button.SetActive(true);
             }
